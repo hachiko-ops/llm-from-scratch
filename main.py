@@ -1,4 +1,5 @@
 import re
+from tokenizer.simple_tokenizer_v1 import SimpleTokenizerV1
 
 with open("the-verdict.txt", "r", encoding="utf-8" ) as file:
     raw_text = file.read()
@@ -21,3 +22,9 @@ for i, item in enumerate(vocabulary.items()):
     if i > 30:
         break
 
+SimpleTokenizer = SimpleTokenizerV1(vocabulary)
+token_ids = SimpleTokenizer.encode(raw_text[:40])
+decoded_text = SimpleTokenizer.decode(token_ids)
+print(f"Original text (first 40 characters): {raw_text[:40]}")
+print(f"Token IDs: {token_ids}")
+print(f"Decoded text: {decoded_text}")
